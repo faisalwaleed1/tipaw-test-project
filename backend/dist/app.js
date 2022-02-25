@@ -1,15 +1,32 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
-const app = (0, express_1.default)();
-const port = 3000;
-app.get('/', (req, res) => {
-    res.send('Hello World!');
+const express = require('express');
+const http = require('http');
+const { ApolloServer } = require('apollo-server-express');
+const { typeDefs } = require('./schema');
+const { resolvers } = require('./resolver');
+const port = process.env.PORT || 3001;
+const startApolloServer = () => __awaiter(this, void 0, void 0, function* () {
+    const app = express();
+    const httpServer = http.createServer(app);
+    const server = new ApolloServer({
+        typeDefs,
+        resolvers
+    });
+    yield server.start();
+    server.applyMiddleware({
+        app,
+        path: '/graphql'
+    });
+    httpServer.listen(port);
+    console.log(`🚀 Server ready at http://localhost:${port}${server.graphqlPath}`);
 });
-app.listen(port, () => {
-    return console.log(`Express is listening at http://localhost:${port}`);
-});
+startApolloServer();
 //# sourceMappingURL=app.js.map
