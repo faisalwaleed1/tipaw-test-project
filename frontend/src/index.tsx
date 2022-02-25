@@ -6,6 +6,7 @@ import { theme } from 'styles/theme';
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import 'react-toastify/dist/ReactToastify.css';
 
 const baseUrl = process.env.REACT_APP_BASE_URL;
 

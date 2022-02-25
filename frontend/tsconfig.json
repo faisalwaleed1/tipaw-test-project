@@ -22,6 +22,7 @@
     "baseUrl": "src",
     "jsxImportSource": "@emotion/react",
   },
+  "types": ["node", "@emotion/core"],
   "include": [
     "src"
   ]

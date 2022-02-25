@@ -2,7 +2,7 @@ export const initialSignUpValues = {
   email: '',
   firstName: '',
   lastName: '',
-  phoneNumber: null,
+  phoneNumber: '',
   password: '',
   confirmPassword: '',
 };
