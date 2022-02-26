@@ -13,7 +13,7 @@ const CardContainer = styled.div({
   justifyContent: 'space-between',
   [mq[0]]: {
     width: '90%',
-    height: 300,
+    height: 330,
   },
   [mq[1]]: {
     width: '47%',
