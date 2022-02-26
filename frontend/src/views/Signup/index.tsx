@@ -1,26 +1,27 @@
- /** @jsxImportSource @emotion/react */
-import { jsx, css } from '@emotion/react';
 import SignupForm from 'components/Signup/SignUpForm';
+import styled from '@emotion/styled';
+
+const ColoredContainer = styled.div({
+  background: '#5acee8',
+  padding: '50px 0px'
+});
+
+const FormContainer = styled.div({
+  margin: '30px auto',
+  paddingLeft: '50px',
+  paddingRight: '50px',
+  width: 'min-content',
+  maxWidth: '100%',
+  position: 'relative'
+})
 
 const Signup = () => {
   return (
-    <div css={css({
-        background: '#5acee8',
-        padding: '50px 0px'
-      })}
-    >
-      <div css={css({
-          margin: '30px auto',
-          paddingLeft: '50px',
-          paddingRight: '50px',
-          width: 'min-content',
-          maxWidth: '100%',
-          position: 'relative'
-        })}
-      >
+    <ColoredContainer>
+      <FormContainer>
         <SignupForm />
-      </div>
-    </div>
+      </FormContainer>
+    </ColoredContainer>
   )
 };
 

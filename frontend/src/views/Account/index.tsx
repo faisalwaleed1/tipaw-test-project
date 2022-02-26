@@ -1,5 +1,7 @@
 import { Key } from 'react';
 import { useQuery, gql } from "@apollo/client";
+import UserList from 'components/Accounts/UserList';
+import PageContainer from 'components/shared/Container';
 
 const ALL_USERS_QUERY = gql`
   query GetAllUsers {
@@ -18,14 +20,11 @@ const Account = () => {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
 
-  return data.allUsers.map((user: { firstName: String ; lastName: String ; email: String; phoneNumber: Number }, i: Key) => (
-    <ul key={i}>
-      <li>{user.firstName}</li>
-      <li>{user.lastName}</li>
-      <li>{user.email}</li>
-      <li>{user.phoneNumber}</li>
-    </ul>
-  ));
+  return (
+    <PageContainer grid='row' fullWidth={true}>
+      <UserList users={data?.allUsers} />
+    </PageContainer>
+  )
 }
 
 export default Account;

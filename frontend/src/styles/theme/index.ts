@@ -26,7 +26,15 @@ const palette = {
   },
 };
 
+const widths = {
+  largePageWidth: 1600,
+  regularPageWidth: 1100,
+  textPageWitdh: 800,
+};
+
 const color = {
+  text: '#FFFF',
+  textSecondary: '#D3D3D3	',
   tranparent: 'transparent',
   light: {
     default: 'white',
@@ -84,6 +92,12 @@ const shape = {
   borderRadius: spacing['xxsmall'],
 };
 
+const unit = 8;
+
+const breakpoints = [480, 768, 992, 1200];
+
+export const mq = breakpoints.map((bp) => `@media (min-width: ${bp}px)`);
+
 export const theme = {
   palette,
   shadows,
@@ -91,4 +105,6 @@ export const theme = {
   shape,
   color,
   font,
+  widths,
+  unit
 };
