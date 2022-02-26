@@ -14,15 +14,9 @@ const palette = {
     contrastText: white,
   },
   error: {
-    main: '#A51C30',
+    main: '#ee2737',
     light: '#A7333F',
     contrastText: white,
-  },
-  grey: {
-    100: '#EAEAEA',
-    200: '#C9C5C5',
-    300: '#888',
-    400: '#666',
   },
 };
 
@@ -33,7 +27,9 @@ const widths = {
 };
 
 const color = {
-  text: '#FFFF',
+  text: 'black',
+  themeColor: '#5acee8',
+  borderColor: "#8c96a3",
   textSecondary: '#D3D3D3	',
   tranparent: 'transparent',
   light: {
@@ -72,15 +68,10 @@ const color = {
   },
 };
 
-const font = {
-  default: `'Open Sans', 'Helvetica', sans-serif`,
-  alternate: `'zenon', 'serif'`,
-}
-
 const shadows = {
   0: 'none',
   1: '0px 5px 10px rgba(0, 0, 0, 0.12)',
-  2: '0px 8px 30px rgba(0, 0, 0, 0.24)',
+  2: '0px 1px 5px 0px rgba(0,0,0,0.15)',
 };
 
 const typography = {
@@ -89,7 +80,7 @@ const typography = {
 };
 
 const shape = {
-  borderRadius: spacing['xxsmall'],
+  borderRadius: spacing['xsmall'],
 };
 
 const unit = 8;
@@ -104,7 +95,6 @@ export const theme = {
   typography,
   shape,
   color,
-  font,
   widths,
   unit
 };

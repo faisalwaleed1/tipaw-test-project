@@ -1,5 +1,5 @@
-import SignupForm from 'components/Signup/SignUpForm';
+import SignUpForm from 'components/SignUp/SignUpForm';
 
-const Signup = () => (<SignupForm />)
+const SignUp = () => (<SignUpForm />)
 
-export default Signup;
+export default SignUp;

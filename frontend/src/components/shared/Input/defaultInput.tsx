@@ -1,66 +1,51 @@
 import styled from "@emotion/styled";
+import { mq, theme } from 'styles/theme';
+import { spacing } from 'styles/theme/units';
 
 const getBorderColor = (props: {
   error: boolean;
-  success: boolean;
   default?: string;
 }) => {
-  let color = props.default ? props.default : "transparent";
-  if (props.success) color = "#479959";
-  if (props.error) color = "#ee2737";
-  return `${color}`;
+  return props.error ? theme.palette.error.main : theme.color.borderColor;
 };
 
-const InputContainer = styled.section`
-  margin-bottom: '15px',
-  vertical-align: 'top',
+const InputContainer = styled.section({
+  marginBottom: '15px',
+  verticalAlign: 'top',
   width: 'calc( 100% - 0px )',
   display: 'block',
-`;
+})
 
-const RequiredSteric = styled.section`
-  color: #ff453e;
-  margin-left: 6px;
-  display: inline-block;
-`
+const Required = styled.section({
+  color: theme.palette.error.main,
+  marginLeft: "6px",
+  display: "inline-block",
+})
 
-const Label = styled.label<{ error: boolean }>`
-  margin-bottom: 6px;
-  text-align: left;
-  font-weight: 600;
-  color: #8c96a3;
-  font-size: 14px;
-  font-weight: 700;
-  color: ${(props) => (props.error ? "#4a4a4a" : "##8c96a3")};
-`;
+const Label = styled.label({
+  marginBottom: "6px",
+  textAlign: 'left',
+  fontWeight: 600,
+  color: theme.color.borderColor,
+  fontSize: '14px',
+});
 
-const Input = styled.input<{ error: boolean; success: boolean }>`
+const Input = styled.input<{ error: boolean; }>`
   width: -webkit-fill-available;
   padding: 7px 42px 7px 12px;
   font-size: 16px;
   background: white;
   color: rgb(112, 112, 112) !important;
-  -webkit-text-fill-color: rgb(112, 112, 112) !important;
-  border-color: rgb(255, 69, 62) !important
-  border: ${({ error, success }) =>
-    `2px solid ${getBorderColor({ error, success })}`};
+  border: ${({ error }) =>
+  `2px solid ${getBorderColor({ error })}`};
+  border-color: rgb(255, 69, 62)
   :focus {
     & + div {
-      border-color: ${({ success }) => (success ? "#479959" : "#523178")};
+      border-color: "#523178";
     }
   }
   &::selection {
     background-color: transparent;
-  }
-  ::-webkit-input-placeholder {
-    font-family: Montserrat;
-    font-size: 22px;
-    font-weight: 200;
-    font-stretch: normal;
-    font-style: italic;
-    line-height: normal;
-    letter-spacing: normal;
-    color: #4a4a4a;
   }
   border-radius: 10px;
   border-width: 2px;
@@ -68,13 +53,12 @@ const Input = styled.input<{ error: boolean; success: boolean }>`
   border-Image: initial;
 `;
 
-const InputMessage = styled.section<{ color: string }>`
+const InputError = styled.section<{ color: string }>`
   height: 20px;
   font-weight: 400;
   font-size: 12px;
   text-align: left;
-
-  color: ${({ color }) => (color === "danger" ? "red" : "")};
+  color: ${({ color }) => (color === "danger" ? theme.palette.error.main : "")};
 `;
 
 const DefaultInput = (props: {
@@ -93,13 +77,12 @@ const DefaultInput = (props: {
 }) => {
   const { isRequired = false, disabled = false, isReadOnly = false } = props;
   const isError = Boolean(props.error);
-  const isSuccess = Boolean(!props.error && props.touch);
 
   return (
     <InputContainer>
-      <Label error={Boolean(props.error)}>
+      <Label>
         {props.label}
-        {isRequired && <RequiredSteric />}
+        {isRequired && <Required>*</Required>}
       </Label>
         <Input
           type={props.type}
@@ -109,13 +92,12 @@ const DefaultInput = (props: {
           onFocus={(e) => props.onFocus && props.onFocus(e)}
           placeholder={props.placeholder}
           error={isError}
-          success={isSuccess}
           disabled={disabled}
           readOnly={isReadOnly}
         />
-      <InputMessage color={isError ? "danger" : "info"}>
+      <InputError color={isError ? "danger" : "info"}>
         {isError ? props.error : ""}
-      </InputMessage>
+      </InputError>
     </InputContainer>
   );
 };

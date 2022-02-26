@@ -1,8 +1,7 @@
 import { BrowserRouter as Router , Routes, Route } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
 import Account from 'views/Account';
 import NotFound from 'views/NotFound';
-import Signup from 'views/Signup';
+import Signup from 'views/SignUp';
 
 const App = () => {
   return (

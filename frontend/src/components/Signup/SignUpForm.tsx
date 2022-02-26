@@ -15,7 +15,7 @@ import {
   ButtonContainer,
   FormLink,
   Line,
-} from './StyledComponents';
+} from './StyledElements';
 import useSignUpUser from './useSignUpUser';
 
 const SignupForm = () => {
